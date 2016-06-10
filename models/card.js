@@ -3,28 +3,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
-var userSchema = new Schema({
-  name: {
-      first: String,
-      last: String
+var cardSchema = new Schema({
+  type: String,
+  front: {
+      html: String,
+      media: [String]
   },
-  username: { type: String, required: true, unique: true},
-  hash: { type: String, required: true },
-  email: { type: string, required: true, unique: true, lowercase: true },
-  admin: {type: Boolean, default:
-  meta: {
-    birthday: Date,
-    website: String
-    location: String,
-    twitterName: String
+  back: {
+      html: String,
+      media: [String]
+  },
+  descrption: {
+      html: String,
+      media: [String]
   }
+  reliesOn: [Schema.Types.ObjectId],
 },
   {
     timestamps: true
   });
 
 // on every save, add the date
-userSchema.pre('save', function(next) {
+cardScheme.pre('save', function(next) {
   // get the current date
   var currentDate = new Date();
 

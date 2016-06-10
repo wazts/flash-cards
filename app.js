@@ -5,15 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var exphbs  = require('express-handlebars');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
+var sets = require('./routes/sets');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'default'}));
+app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -30,6 +33,8 @@ mongoose.connect(process.env.MONGOOSE_DATABASE || 'mongodb://localhost/myappdata
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/admin', admin);
+app.use('/sets', sets)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
