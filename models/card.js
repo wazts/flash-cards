@@ -16,31 +16,15 @@ var cardSchema = new Schema({
   descrption: {
       html: String,
       media: [String]
-  }
+  },
   reliesOn: [Schema.Types.ObjectId],
 },
   {
     timestamps: true
   });
 
-// on every save, add the date
-cardScheme.pre('save', function(next) {
-  // get the current date
-  var currentDate = new Date();
-
-  // change the updated_at field to current date
-  this.updated_at = currentDate;
-
-  // if created_at doesn't exist, add to that field
-  if (!this.created_at)
-    this.created_at = currentDate;
-
-  next();
-});
-
 // the schema is useless so far
 // we need to create a model using it
-var User = mongoose.model('User', userSchema);
+var Card = mongoose.model('Card', cardSchema);
 
-// make this available to our users in our Node applications
-module.exports = User;
+module.exports = Card;

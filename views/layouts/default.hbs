@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,10 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
+
   <body>
     <div class="container">
-      {{! Every view gets inserted here }}
-      {{{body}}}
+        {{#each error_messages}}<div class="alert alert-danger" role="alert">{{this}}</div>{{/each}}
+        {{#each success_messages}}<div class="alert alert-info" role="alert">{{this}}</div>{{/each}}
+        {{{body}}}
     </div>
   </body>
+
 </html>
